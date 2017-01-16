@@ -9,16 +9,21 @@ Based on this [big list of naughty strings][1], here's a generator for use with 
 ``` clojure
 
 (ns my-ns
-  (:require [naughty-string-generator.core :as nsg]
-            [clojure.spec :as s]
+  (:require [naughty-string-generator.core :refer [naughty-string-generator]]
             [clojure.spec.gen :as sg]))
 
+(sg/sample naughty-string-generator)
 
-(s/exercise (s/gen nsg/naughty-strings))
-;;=>
-
-
-
+;;=>("\"`'><script>\\xE2\\x80\\x86javascript:alert(1)</script>"
+     "<IMG SRC=# onmouseover=\"alert('xxs')\">"
+     "`\"'><img src=xxx:x \\x0Aonerror=javascript:alert(1)>"
+     "ﷺ"
+     ","
+     "<a href=\"\\x08javascript:javascript:alert(1)\" id=\"fuzzelement1\">test</a>"
+     "ABC<div style=\"x:\\xE2\\x80\\x84expression(javascript:alert(1)\">DEF"
+     "\\"
+     "0xabad1dea"
+     "<SCRIPT/XSS SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>")
 ```
 
 ## License

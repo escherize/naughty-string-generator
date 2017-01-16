@@ -11,7 +11,7 @@
        (remove #(= "" %))
        (remove #(re-matches #"^\#.*" %))
        (str/join "\n")
-       (spit "naughty.edn")))
+       (spit "naughty.txt")))
 
 (defmemo raw-list []
-  (-> "naughty.edn" slurp str/split-lines))
+  (-> "naughty.txt" slurp str/split-lines))
